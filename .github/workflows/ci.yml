@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [ "main" ]
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      # (Optional) Use Ccache or a specific compiler version
+      - name: Install Dependencies
+        run: sudo apt-get update && sudo apt-get install -y cmake g++
+
+      - name: Configure
+        run: cmake -B build -DCMAKE_BUILD_TYPE=Release .
+
+      - name: Build
+        run: cmake --build build --target unit-tests
+
+      #- name: Test
+        #run: ctest --test-dir build
+
+      - name: Static Analysis (Clang-Tidy)
+        run: |
+          cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_CLANG_TIDY=clang-tidy .
+          cmake --build build
+
+  coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Coverage
+        run: |
+          cmake -B build -DCMAKE_BUILD_TYPE=Debug -DENABLE_TEST_COVERAGE=ON .
+          cmake --build build
+          #ctest --test-dir build

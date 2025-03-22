@@ -1,0 +1,4 @@
+@PACKAGE_INIT@
+
+# Include the targets file created by install(EXPORT ...).
+include("${CMAKE_CURRENT_LIST_DIR}/vpr-obfuscatorTargets.cmake")
