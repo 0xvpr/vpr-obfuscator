@@ -1,15 +1,18 @@
 /**
+ *
+ * Version:     1.0.0
+ *
  * Creator:     VPR
+ * Contact:     admin@0xvpr.io
+ *
  * Created:     March 21st, 2025
  * Updated:     March 22nd, 2025
  *
- * Description: C++20 and onwards Obfuscator PoC for compile-time obfuscated strings.
- *              - Works on g++ using -Ofast/O3 optimization.
- *              - Does not use any stdlibc++ objects for linking.
+ * Description: A single-header-only library for compile-time obfuscated strings.
  *
- * Disclaimer:  This program was designed as a proof-of-concept. It doesn't do
- *              anything malicious and it is not intended to do so. Don't try
- *              to use it for any malicious or illegal activity.
+ * License:     MIT -> https://mit-license.org/
+ * Copyright:   VPR, 2025
+ *
 **/
 
 
@@ -75,7 +78,7 @@ public:
     {}
 
     constexpr inline ~obfuscator() {
-        wipe(); // performed regardless
+        wipe();
     }
 
     constexpr inline void wipe() const {

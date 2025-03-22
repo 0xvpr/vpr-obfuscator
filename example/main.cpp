@@ -12,7 +12,7 @@
  *              to use it for any malicious or illegal activity.
 **/
 
-#include "vprobf.hpp"
+#include "vpr/obf.hpp"
 
 #include <cstdio>
 
