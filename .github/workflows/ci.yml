@@ -18,10 +18,10 @@ jobs:
 
       # (Optional) Use Ccache or a specific compiler version
       - name: Install Dependencies
-        run: sudo apt-get update && sudo apt-get install -y cmake g++
+        run: sudo apt-get update && sudo apt-get install -y ninja-build cmake g++
 
       - name: Configure
-        run: cmake -B build -DCMAKE_BUILD_TYPE=Release .
+        run: cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release .
 
       - name: Build
         run: cmake --build build --target unit-tests
@@ -37,7 +37,10 @@ jobs:
   coverage:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
       - name: Coverage
         run: |
           cmake -B build -DCMAKE_BUILD_TYPE=Debug -DENABLE_TEST_COVERAGE=ON .
