@@ -1,8 +1,8 @@
 include_directories(
     ${CMAKE_SOURCE_DIR}
-    ${CMAKE_SOURCE_DIR}/ut
-    ${CMAKE_SOURCE_DIR}/include
-    ${CMAKE_SOURCE_DIR}/external/doctest
+    ${CMAKE_CURRENT_SOURCE_DIR}/../ut
+    ${CMAKE_CURRENT_SOURCE_DIR}/../include
+    ${CMAKE_CURRENT_SOURCE_DIR}/../external/doctest
 )
 
 # Build test executable
