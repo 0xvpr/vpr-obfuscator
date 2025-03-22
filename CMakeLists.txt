@@ -64,5 +64,6 @@ install(
 
 if(VPR_OBF_BUILD_TESTS)
     enable_testing()
+    include(CTest)
     add_subdirectory( ut )
 endif()
