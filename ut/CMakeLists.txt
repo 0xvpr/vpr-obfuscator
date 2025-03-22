@@ -21,6 +21,6 @@ endif()
 
 # Optionally enable sanitizers for debug
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-    target_compile_options(obfuscator_tests PRIVATE -fsanitize=address,undefined)
-    target_link_options(obfuscator_tests PRIVATE -fsanitize=address,undefined)
+    target_compile_options(unit-tests PRIVATE -fsanitize=address,undefined)
+    target_link_options(unit-tests PRIVATE -fsanitize=address,undefined)
 endif()
