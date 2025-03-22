@@ -10,9 +10,11 @@ jobs:
   build-and-test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code with submodules
+        uses: actions/checkout@v4
         with:
-        submodules: recursive
+          submodules: recursive
+          fetch-depth: 0
 
       # (Optional) Use Ccache or a specific compiler version
       - name: Install Dependencies
@@ -40,4 +42,4 @@ jobs:
         run: |
           cmake -B build -DCMAKE_BUILD_TYPE=Debug -DENABLE_TEST_COVERAGE=ON .
           cmake --build build
-          #ctest --test-dir build
+          ctest --test-dir build
