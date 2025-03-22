@@ -26,9 +26,14 @@ jobs:
       - name: Build
         run: cmake --build build --target unit-tests
 
-      - name: Static Analysis (Clang-Tidy)
+      - name: Debug build Static Analysis (Clang-Tidy)
         run: |
           cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_CLANG_TIDY=clang-tidy .
+          cmake --build build
+
+      - name: Release build Static Analysis (Clang-Tidy)
+        run: |
+          cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_CLANG_TIDY=clang-tidy .
           cmake --build build
 
   tests:
@@ -41,6 +46,6 @@ jobs:
           fetch-depth: 0
       - name: Coverage
         run: |
-          cmake -B build -DCMAKE_BUILD_TYPE=Debug -DENABLE_TEST_COVERAGE=ON .
+          cmake -B build -DCMAKE_BUILD_TYPE=Release -DENABLE_TEST_COVERAGE=ON .
           cmake --build build
           ctest --test-dir build
